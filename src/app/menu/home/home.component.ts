@@ -57,7 +57,7 @@ factura(){
   console.log(resultadoMetodoGet)});
 
   this._router.navigate(
-    [`/cliente/`+ this.Gvariables.g_empid.id.id]
+    [`/factura/`+ this.Gvariables.g_empid.id.id]
   )
 
 }
@@ -70,7 +70,7 @@ cliente(){
   console.log(resultadoMetodoGet)});
 
   this._router.navigate(
-    [`/factura/`+ this.Gvariables.g_empid.id.id]
+    [`/cliente/`+ this.Gvariables.g_empid.id.id]
   )
 
 
