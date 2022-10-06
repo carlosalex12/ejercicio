@@ -27,7 +27,7 @@ export class UsuarioService {
     return this.http.get(url);
   }
 //instancio url con la url del back-end
-  urlget:string='https://localhost:44373/Usuario/Usuarios';
+urlget:string='https://localhost:44373/Usuario/Usuarios';
 urlpost:string='https://localhost:44373/api/Usuario/InsertaUsuario';
 urlput:string='https://localhost:44373/api/Usuario/ActualizaUsuario';
 urldelete:string='https://localhost:44373/api/Usuario/Usuarios';

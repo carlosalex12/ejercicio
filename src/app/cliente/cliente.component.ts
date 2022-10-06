@@ -3,26 +3,37 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { articulo } from '../model/articulo';
-import { articuloService } from '../services/articulo.service';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
 import { VariablesGlobalesService } from '../menu/serviceMenu/variables-globales.service';
-import { clienteservice } from '../services/clienteservice';
 import { clientes } from '../model/cliente';
+import { GlobalService } from '../services/GserviceGPPD';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+
+  emp_cod: string="";
+
+ cli_cod: string="";
+
+  cli_nom: string="";
+
+  cli_est:  string="";
+
+  ccl_cod: string="";
+
+
+
   cliente:clientes = new clientes ();
   datatable:any=[];
-  displayedColumns: string[] = ['emp_cod', 'cli_cod', 'cli_nom', 'cli_est','ccl_cod'];
+  displayedColumns: string[] = ['emp_cod', 'cli_cod', 'cli_nom', 'cli_est','ccl_cod','boton'];
   constructor(
 
     private readonly _rutaDatos: ActivatedRoute,
     private _router:Router,
-    private Cliente:clienteservice,
+    private GlobalService:GlobalService,
     private gvariables:VariablesGlobalesService
   ) { }
 
@@ -36,9 +47,9 @@ export class ClienteComponent implements OnInit {
     this.ondatatable();
   }
 
-
+///TRAER DATOS
   ondatatable(){
-    this.Cliente
+    this.GlobalService
 
     .metodoGet(`https://localhost:44373/Cliente/Consultas?usuario=`+this.gvariables.g_empid.id.id)
     .subscribe((res:any) => {
@@ -56,17 +67,102 @@ this.dataSource.data=this.datatable
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
     }
+    //FILTRO
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+    //MOSTRAR DATOS
     onSetData(select:any){
-      this.cliente.emp_cod=select.art_cod;
-      this.cliente.cli_cod=select.art_est;
-      this.cliente.cli_nom=select.art_nom;
-      this.cliente.cli_est=select.art_prec;
-      this.cliente.ccl_cod=select.car_cod;
+      this.cliente.emp_cod=select.emp_cod;
+      this.cliente.cli_cod=select.cli_cod;
+      this.cliente.cli_nom=select.cli_nom;
+      this.cliente.cli_est=select.cli_est;
+      this.cliente.ccl_cod=select.ccl_cod;
 
       }
+
+
+//INGRESAR
+      OnAddusuario(Cliente:clientes):void{
+
+        console.log(this.gvariables.g_empid.id.id)
+        this.GlobalService
+        .metodoPost('https://localhost:44373/Cliente/Insertar?usuario='+this.gvariables.g_empid.id.id,{
+        emp_cod:this.cliente.emp_cod,
+        cli_cod:this.cliente.cli_cod,
+        cli_nom:this.cliente.cli_nom,
+        cli_est:this.cliente.cli_est,
+        ccl_cod:this.cliente.ccl_cod,
+
+      })
+      .subscribe((resultado)=>{
+
+        alert('CLIENTE AÑADIDO')
+        this.ondatatable();
+        this.clear();
+        console.log(resultado);
+
+      })
+
+              }
+
+            ///actualizar
+            onUpdateArticulo(cliente:clientes):void{
+            this.GlobalService
+            .metodoPut('https://localhost:44373/Cliente/Actualizar?usuario='+this.gvariables.g_empid.id.id,{
+              emp_cod:this.cliente.emp_cod,
+              cli_cod:this.cliente.cli_cod,
+              cli_nom:this.cliente.cli_nom,
+              cli_est:this.cliente.cli_est,
+              ccl_cod:this.cliente.ccl_cod,
+          })
+          .subscribe((resultado)=>{
+
+            alert('ARTICULO ACTUALIZADO')
+            this.ondatatable();
+            this.clear();
+            console.log(resultado);
+
+          })}
+
+            ///Eliminar
+            onDeleteArticulo(cliente:clientes):void{
+              this.GlobalService
+              .metodoPut('https://localhost:44373/Cliente/Eliminar?usuario='+this.gvariables.g_empid.id.id,{
+                cli_cod:this.cliente.cli_cod,
+            })
+            .subscribe((resultado)=>{
+
+              alert('ARTICULO ELIMINADO')
+              this.ondatatable();
+              this.clear();
+              console.log(resultado);
+
+            })
+            }
+            ///
+
+            regresar(){
+              console.log(this.gvariables.g_empid)
+              this._router.navigate(
+
+
+                [`/home/`+this.gvariables.g_empid.id.id]
+
+              )
+
+            }
+//borrar campos
+      clear(){
+        this.cliente.emp_cod=""
+        this.cliente.cli_cod=""
+        this.cliente.cli_nom=""
+        this.cliente.cli_est=""
+        this.cliente.ccl_cod=""
+
+
+      }
+
 
 }

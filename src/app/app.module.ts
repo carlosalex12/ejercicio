@@ -19,7 +19,13 @@ import { FacturaComponent } from './factura/factura.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { MenuModule } from './menu/menu.module';
 
-
+//prime
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {MenuItem} from 'primeng/api';
+import {ButtonModule} from 'primeng/button';
+import { TablaeditComponent } from './tablaedit/tablaedit.component';
+import {TableModule} from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,7 @@ import { MenuModule } from './menu/menu.module';
     ArticuloComponent,
     FacturaComponent,
     ClienteComponent,
+    TablaeditComponent,
 
 
   ],
@@ -43,7 +50,11 @@ import { MenuModule } from './menu/menu.module';
     HttpClientModule,
     FormsModule,
     MatIconModule,
-MenuModule
+MenuModule,
+ButtonModule,
+TableModule,
+DialogModule,
+
 
 
 

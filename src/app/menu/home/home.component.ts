@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { articuloService } from 'src/app/services/articulo.service';
+import { GlobalService } from 'src/app/services/GserviceGPPD';
+
 import { VariablesGlobalesService } from '../serviceMenu/variables-globales.service';
 
 @Component({
@@ -15,7 +16,7 @@ l_Lemp=''
   constructor(
     private readonly _rutaDatos: ActivatedRoute,
     private _router:Router,
-    private articuloservice:articuloService,
+    private GlobalService:GlobalService,
     private Gvariables:VariablesGlobalesService
 
   ) { }
@@ -36,7 +37,7 @@ this.l_Lemp=this.Gvariables.g_Lemp;
   }
 
 articulo(){
-  this.articuloservice
+  this.GlobalService
 
   .metodoGet(`https://localhost:44373/Articulo/ConsultaArticulo?usuario=`+ this.Gvariables.g_empid.id.id)
   .subscribe((resultadoMetodoGet:any) => {
@@ -49,7 +50,7 @@ articulo(){
 
 }
 factura(){
-  this.articuloservice
+  this.GlobalService
 
   .metodoGet(`https://localhost:44373/Cliente/Consultas?usuario=`+ this.Gvariables.g_empid.id.id)
   .subscribe((resultadoMetodoGet:any) => {
@@ -62,7 +63,7 @@ factura(){
 
 }
 cliente(){
-  this.articuloservice
+  this.GlobalService
 
   .metodoGet(`https://localhost:44373/Factura/Consultas?usuario=`+ this.Gvariables.g_empid.id.id)
   .subscribe((resultadoMetodoGet:any) => {

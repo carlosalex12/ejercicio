@@ -2,8 +2,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AppRoutingModule } from '../../app-routing.module';
-import { loginService } from '../../services/login.service';
+import { GlobalService } from 'src/app/services/GserviceGPPD';
 import { VariablesGlobalesService } from '../serviceMenu/variables-globales.service';
 
 @Component({
@@ -18,9 +17,12 @@ l_pass='';
 
 //llamar al servicio de login y integrarlo al contructor
 forms:FormGroup
-  constructor(  private router: Router, private fb:FormBuilder,
-    private _snackBar: MatSnackBar ,private loginservice:loginService,
-   private G_variables:VariablesGlobalesService
+  constructor(
+  private router: Router,
+  private fb:FormBuilder,
+  private _snackBar: MatSnackBar ,
+  private GlobalService:GlobalService,
+  private G_variables:VariablesGlobalesService
 
     )
 {
@@ -36,7 +38,7 @@ Contrasena:['Escriba su contraseña',Validators.required]
   }
 ingresar(){
 //llama al servicio
-  this.loginservice
+  this.GlobalService
 
     .metodoGet(`https://localhost:44373/Usuario/ExistenciaUsuario?usuario=`+this.l_user)
     .subscribe((resultadoMetodoGet:any) => {
@@ -50,7 +52,7 @@ ingresar(){
 
 if(this.l_user ==this.G_variables.g_user && this.l_pass==this.G_variables.g_pass){
 
-  this.loginservice
+  this.GlobalService
 
   .metodoGet(`https://localhost:44373/Usuario/ExistenciaUsuario?usuario=`+this.G_variables.g_empid)
   .subscribe((resultadoMetodoGet:any) => {

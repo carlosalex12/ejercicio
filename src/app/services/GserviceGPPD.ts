@@ -6,10 +6,10 @@ import { articulo } from '../model/articulo';
 @Injectable({
   providedIn: 'root'
 })
-export class facturaservices {
+export class GlobalService {
 
   constructor(private http:HttpClient) { }
-  urlpost:string='https://localhost:44373/Articulo/InsertarArticulo?user=';
+
 
   metodoGet(url: string, ) {
     return this.http.get(url);
@@ -17,20 +17,15 @@ export class facturaservices {
   metodoPost(url:string,datos:any) {
     return this.http.post(url,datos);
   }
-  addUsuario(articulo:articulo):Observable<articulo>{
-  return this.http.post<articulo>(this.urlpost,articulo);
-}
 
-  metodoPut(url: string, dataAEditar:any) {
-    return this.http.put(url, dataAEditar);
-  }
-
-  metodoDelete(url: string) {
-    return this.http.delete(url);
+  metodoPut(url:string,datos:any) {
+    return this.http.put(url,datos);
   }
 
 
-
+  metodoDelete(url:string,datos:any) {
+    return this.http.delete(url,datos);
+  }
 
 
 }

@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { articulo } from '../model/articulo';
-import { articuloService } from '../services/articulo.service';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
 import { VariablesGlobalesService } from '../menu/serviceMenu/variables-globales.service';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { GlobalService } from '../services/GserviceGPPD';
 @Component({
   selector: 'app-articulo',
   templateUrl: './articulo.component.html',
@@ -15,6 +15,7 @@ import { VariablesGlobalesService } from '../menu/serviceMenu/variables-globales
 export class ArticuloComponent implements OnInit {
 
   l_nombreEs="";
+
   art_cod="";
 
   art_est="";
@@ -29,13 +30,13 @@ export class ArticuloComponent implements OnInit {
 
   articulo:articulo = new articulo();
   datatable:any=[];
-  displayedColumns: string[] = ['art_cod', 'art_est', 'art_nom', 'art_prec','car_cod', 'emp_cod','car_nom'];
+  displayedColumns: string[] = ['art_cod', 'art_est', 'art_nom', 'art_prec','car_cod', 'emp_cod','car_nom','boton'];
   constructor(
-
     private readonly _rutaDatos: ActivatedRoute,
     private _router:Router,
-    private articuloservice:articuloService,
-    private gvariables:VariablesGlobalesService
+    private GlobalService:GlobalService,
+    private gvariables:VariablesGlobalesService,
+    private _bottomSheet: MatBottomSheet,
     ) { }
 
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class ArticuloComponent implements OnInit {
 
 
   ondatatable(){
-    this.articuloservice
+    this.GlobalService
 
     .metodoGet(`https://localhost:44373/Articulo/Consultas?usuario=`+this.gvariables.g_empid.id.id)
     .subscribe((res:any) => {
@@ -84,5 +85,85 @@ this.dataSource.data=this.datatable
       this.articulo.emp_cod=select.emp_cod;
       }
 
+      ///ingresar articuloss
+
+      OnAddusuario(Articulo:articulo):void{
+
+  console.log(this.gvariables.g_empid.id.id)
+  this.GlobalService
+  .metodoPost('https://localhost:44373/Articulo/Insertar?usuario='+this.gvariables.g_empid.id.id,{
+  emp_cod:this.articulo.emp_cod,
+  art_cod:this.articulo.art_cod,
+  art_nom:this.articulo.art_nom,
+  art_est:this.articulo.art_est,
+  car_cod:this.articulo.car_cod,
+  art_prec:this.articulo.art_prec
+})
+.subscribe((resultado)=>{
+
+  alert('ARTICULO AÑADIDO')
+  this.ondatatable();
+  this.clear();
+  console.log(resultado);
+
+})
+
+        }
+
+      ///actualizar articulo
+      onUpdateArticulo(articulo:articulo):void{
+      this.GlobalService
+      .metodoPut('https://localhost:44373/Articulo/Actualizar?usuario='+this.gvariables.g_empid.id.id,{
+      art_cod:this.articulo.art_cod,
+      art_nom:this.articulo.art_nom,
+      art_est:this.articulo.art_est,
+      car_cod:this.articulo.car_cod,
+      art_prec:this.articulo.art_prec
+    })
+    .subscribe((resultado)=>{
+
+      alert('ARTICULO ACTUALIZADO')
+      this.ondatatable();
+      this.clear();
+      console.log(resultado);
+
+    })}
+      ///Eliminar
+      onDeleteArticulo(articulo:articulo):void{
+        this.GlobalService
+        .metodoPut('https://localhost:44373/Articulo/Eliminar?usuario='+this.gvariables.g_empid.id.id,{
+        art_cod:this.articulo.art_cod,
+      })
+      .subscribe((resultado)=>{
+
+        alert('ARTICULO ELIMINADO')
+        this.ondatatable();
+        this.clear();
+        console.log(resultado);
+
+      })
+      }
+      ///
+
+      regresar(){
+        console.log(this.gvariables.g_empid)
+        this._router.navigate(
+
+
+          [`/home/`+this.gvariables.g_empid.id.id]
+
+        )
+
+      }
+
+clear(){
+  this.articulo.art_cod='',
+  this.articulo.art_nom='',
+  this.articulo.art_est='',
+  this.articulo.car_cod='',
+  this.articulo.art_prec=0
+
+
+}
 
 }
