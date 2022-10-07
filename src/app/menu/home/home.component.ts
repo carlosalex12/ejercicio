@@ -77,6 +77,12 @@ cliente(){
 
 
 }
+prueba(){
+  this._router.navigate(
+    [`/prueba/`]
+  )
+
+}
 }
 
 

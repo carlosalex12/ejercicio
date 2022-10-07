@@ -87,11 +87,17 @@ this.dataSource.data=this.datatable
 
       ///ingresar articuloss
 
-      OnAddusuario(Articulo:articulo):void{
+OnAddusuario(Articulo:articulo):void{
 
   console.log(this.gvariables.g_empid.id.id)
+
+
   this.GlobalService
-  .metodoPost('https://localhost:44373/Articulo/Insertar?usuario='+this.gvariables.g_empid.id.id,{
+
+
+  .metodoPost('https://localhost:44373/Articulo/Insertar?usuario='+this.gvariables.g_empid.id.id,
+
+  {
   emp_cod:this.articulo.emp_cod,
   art_cod:this.articulo.art_cod,
   art_nom:this.articulo.art_nom,

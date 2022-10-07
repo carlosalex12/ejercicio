@@ -7,6 +7,7 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { ArticuloComponent } from './articulo/articulo.component';
 import { FacturaComponent } from './factura/factura.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { PruebaComponent } from './prueba/prueba.component';
 //import { HomeModule } from './components/home/home.module';
 
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'cliente/:id',
     component: ClienteComponent,
+  },
+  {
+    path: 'prueba',
+    component: PruebaComponent,
   },
   {
     path: '**',

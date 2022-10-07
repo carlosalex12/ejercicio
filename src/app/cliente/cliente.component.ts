@@ -88,14 +88,16 @@ this.dataSource.data=this.datatable
 
         console.log(this.gvariables.g_empid.id.id)
         this.GlobalService
-        .metodoPost('https://localhost:44373/Cliente/Insertar?usuario='+this.gvariables.g_empid.id.id,{
-        emp_cod:this.cliente.emp_cod,
-        cli_cod:this.cliente.cli_cod,
-        cli_nom:this.cliente.cli_nom,
-        cli_est:this.cliente.cli_est,
-        ccl_cod:this.cliente.ccl_cod,
+        .metodoPost('https://localhost:44373/Cliente/Insertar?usuario='+this.gvariables.g_empid.id.id,
 
-      })
+        {
+           emp_cod:this.cliente.emp_cod,
+           cli_cod:this.cliente.cli_cod,
+           cli_nom:this.cliente.cli_nom,
+           cli_est:this.cliente.cli_est,
+           ccl_cod:"c01",
+
+        })
       .subscribe((resultado)=>{
 
         alert('CLIENTE AÑADIDO')
@@ -111,7 +113,7 @@ this.dataSource.data=this.datatable
             onUpdateArticulo(cliente:clientes):void{
             this.GlobalService
             .metodoPut('https://localhost:44373/Cliente/Actualizar?usuario='+this.gvariables.g_empid.id.id,{
-              emp_cod:this.cliente.emp_cod,
+
               cli_cod:this.cliente.cli_cod,
               cli_nom:this.cliente.cli_nom,
               cli_est:this.cliente.cli_est,

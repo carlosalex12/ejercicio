@@ -11,12 +11,13 @@ import { VariablesGlobalesService } from '../serviceMenu/variables-globales.serv
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  forms:FormGroup
   ///variable locales
 l_user='' ;
 l_pass='';
 
 //llamar al servicio de login y integrarlo al contructor
-forms:FormGroup
+
   constructor(
   private router: Router,
   private fb:FormBuilder,
@@ -28,13 +29,15 @@ forms:FormGroup
 {
 //validacion de imput
 this.forms=this.fb.group({
-Usuario:['campos vacios',Validators.required],
-Contrasena:['Escriba su contraseña',Validators.required]
+Usuario:['',Validators.required],
+Contrasena:['',Validators.required]
 })
 
 }
 
   ngOnInit(): void {
+    console.log('datos form')
+console.log(this.forms)
   }
 ingresar(){
 //llama al servicio
@@ -49,8 +52,7 @@ ingresar(){
 
     console.log('ID')
     console.log( this.G_variables.g_empid)
-
-if(this.l_user ==this.G_variables.g_user && this.l_pass==this.G_variables.g_pass){
+  if(this.l_user ==this.G_variables.g_user && this.l_pass==this.G_variables.g_pass){
 
   this.GlobalService
 
@@ -76,6 +78,10 @@ this.G_variables.g_Lemp=".\assets\zion\ImagenEmpresa\G01\logo.png"
    [`/home/`+ this.G_variables.g_empid]
 
  )
+}else if(this.l_user  !== this.G_variables.g_user && this.l_pass !== this.G_variables.g_pass){
+
+  alert('Usuario o contraseña no existentes')
+
 }
 
 /*

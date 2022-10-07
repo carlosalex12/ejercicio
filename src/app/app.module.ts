@@ -12,7 +12,7 @@ import { NavbarComponent } from './menu/navbar/navbar.component';
 import { FooterComponent } from './menu/footer/footer.component';
 //importar HttpClientModule
 import {  HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { ArticuloComponent } from './articulo/articulo.component';
 import { FacturaComponent } from './factura/factura.component';
@@ -26,6 +26,10 @@ import {ButtonModule} from 'primeng/button';
 import { TablaeditComponent } from './tablaedit/tablaedit.component';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
+import { PruebaComponent } from './prueba/prueba.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,8 @@ import {DialogModule} from 'primeng/dialog';
     FacturaComponent,
     ClienteComponent,
     TablaeditComponent,
+    PruebaComponent,
+
 
 
   ],
@@ -54,6 +60,7 @@ MenuModule,
 ButtonModule,
 TableModule,
 DialogModule,
+ReactiveFormsModule
 
 
 
