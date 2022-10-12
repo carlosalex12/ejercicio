@@ -25,7 +25,11 @@ export class GlobalService {
 
   metodoDelete(url:string,datos:any) {
     return this.http.delete(url,datos);
+
   }
+
+
+
   server:string='https://localhost:44373/';
   inser:string='/Insertar?usuario='
 

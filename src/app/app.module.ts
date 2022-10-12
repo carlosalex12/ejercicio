@@ -27,6 +27,7 @@ import { TablaeditComponent } from './tablaedit/tablaedit.component';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import { PruebaComponent } from './prueba/prueba.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 
 
 
@@ -44,6 +45,7 @@ import { PruebaComponent } from './prueba/prueba.component';
     ClienteComponent,
     TablaeditComponent,
     PruebaComponent,
+    FacturacionComponent,
 
 
 

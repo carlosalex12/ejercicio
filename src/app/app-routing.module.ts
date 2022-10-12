@@ -8,6 +8,7 @@ import { ArticuloComponent } from './articulo/articulo.component';
 import { FacturaComponent } from './factura/factura.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 //import { HomeModule } from './components/home/home.module';
 
 const routes: Routes = [
@@ -25,7 +26,10 @@ const routes: Routes = [
     component: LoginComponent,
   },
 
-
+  {
+    path: 'facturacion/:id',
+    component: FacturacionComponent,
+  },
   {
     path: 'home/:id',
     component: HomeComponent,

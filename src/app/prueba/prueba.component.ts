@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { recorrerformulario } from '../menu/serviceMenu/Recorreformulario';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,7 +30,8 @@ export class PruebaComponent implements OnInit {
     private router: Router,
     private fb:FormBuilder,
     private _snackBar: MatSnackBar,
-    private gservice:GlobalService
+    private gservice:GlobalService,
+    private armarinser:recorrerformulario
   )
   {
     this.datosforms=this.fb.group({
@@ -43,23 +44,29 @@ export class PruebaComponent implements OnInit {
 
 tabla="cliente"
 urlin=""
+datos:any
   ngOnInit(): void {
 
   }
-  element:any
+  elements:any
 
-
+//let valores:any[]=[{
+  //name:element.name,
+ // id:element.id,
+//value:element.value
+ //}]
 
 mostrarForm(){
 
 }
   guardar(){
-    this.element= document.getElementById("datosform")
-
+    this.elements = document.getElementById("datosform")
+   this.datos=this.armarinser.armarinsert(this.elements)
 
 
 console.log('datos form')
-console.log(this.element)
+console.log(this.datos)
+console.log('url insert')
 
 this.urlin=this.gservice
 .creainser(this.tabla)
@@ -67,4 +74,6 @@ this.urlin=this.gservice
 console.log(this.urlin)
 
   }
+
+
 }

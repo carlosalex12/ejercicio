@@ -1,0 +1,145 @@
+<div class="container color">
+
+<div class="container text-center ">
+  <mat-card>
+  <mat-card-title>FACTURACION</mat-card-title>
+<div class="row m-4">
+  <mat-card class="table">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">N Factura</label>
+          <input type="text" class="form-control"  value="{{this.l_NumFac}}"   id="art_est" name="art_est"aria-describedby="" disabled>
+        </div>
+        <div class="col">
+          <label class="form-label">FECHA FACTURA</label>
+          <input type="date" class="form-control" id="fac_fec" [value]="this.l_fecfa" name="fac_fec"  value="12/10/2022">
+
+        </div>
+        <div class="col">
+          <label class="form-label">SERIE</label>
+          <input type="text" class="form-control" id="" name=""aria-describedby="">
+        </div>
+        <div class="col">
+          <label class="form-label">SUCURSAL</label>
+          <input type="text" class="form-control" id="" name=""aria-describedby="">
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</div>
+<div class="row m-2">
+  <mat-card class="table">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">COD ClIENTE</label>
+          <input type="text" class="form-control" [(ngModel)]="l_idCliente"id="" name=""aria-describedby="" >
+        </div>
+        <div class="col">
+          <label class="form-label">NOMBRE ClIENTE</label>
+          <input type="text" class="form-control"     value="{{this.l_nomCli}}" aria-describedby="" >
+        </div>
+        <div class="col">
+          <label class="form-label">ESTADO ClIENTE </label>
+          <input type="text" class="form-control"  value="{{this.l_estCli}}" id="" name=""aria-describedby="" disabled>
+        </div>
+        <div class="col">
+          <label class="form-label">CATEGORIA ClIENTE</label>
+          <input type="text" class="form-control" value="{{this.l_catCli}}"  id="" name=""aria-describedby="" disabled>
+        </div>
+        <div class="col mt-4">
+
+            <button type="button" class="btn btn-primary "(click)=" buscarcli()" data-bs-dismiss="modal">Buscar</button>
+
+        </div>
+      </div>
+    </div>
+
+
+  </mat-card>
+
+
+</div>
+<div class="row m-4">
+
+  <mat-card class="table">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">CODIGO ARTICULO</label>
+          <input type="text" class="form-control" [(ngModel)]="l_codArt" id="art_cod" name="art_cod"aria-describedby="" >
+        </div>
+        <div class="col">
+          <label class="form-label">NOMBRE ARTICULO</label>
+          <input type="text" class="form-control"  id="art_cod"  value="{{this.l_nomArt}}" name="art_cod" disabled >
+        </div>
+        <div class="col">
+          <label class="form-label">CANTIDAD </label>
+          <input type="number" class="form-control" [(ngModel)]="l_CantArt"  id="" name=""aria-describedby="" >
+        </div>
+        <div class="col">
+          <label class="form-label">Precio</label>
+          <input type="number" class="form-control" value="{{this.l_precioArt}}" id="" name=""disabled >
+        </div>
+        <div class="col">
+          <label class="form-label">Valor Total</label>
+          <input type="number" class="form-control"  [(ngModel)]="l_TotalArt"id="" name="" disabled>
+        </div>
+        <div class="col mt-4">
+
+          <button type="button" class="btn btn-primary "(click)=" buscArt()" data-bs-dismiss="modal">Buscar</button>
+
+      </div>
+      </div>
+    </div>
+
+
+
+  </mat-card>
+
+
+</div>
+<div class="row m-4">
+  <mat-card class="table">
+    <mat-card-title></mat-card-title>
+
+    <p-table [value]="products" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Codigo</th>
+              <th>Articulo</th>
+              <th>CAntidad</th>
+              <th>Precio</th>
+              <th>IVA</th>
+              <th>Subtotal</th>
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>{{product.code}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.category}}</td>
+              <td>{{product.quantity}}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+
+
+  </mat-card>
+</div>
+<div class="row m-4">
+  <mat-card>
+  <button mat-raised-button color="primary" (click)="enviar()">Nueva</button>
+  <button mat-raised-button color="accent">INGRESAR</button>
+  <button mat-raised-button color="warn">GUARDAR</button>
+</mat-card>
+</div>
+
+
+</mat-card>
+</div>
+
+</div>

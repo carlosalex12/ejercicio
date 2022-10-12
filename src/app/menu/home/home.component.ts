@@ -83,6 +83,12 @@ prueba(){
   )
 
 }
+facturacion(){
+
+  this._router.navigate(
+    [`/facturacion/`+ this.Gvariables.g_empid.id.id]
+  )
+}
 }
 
 

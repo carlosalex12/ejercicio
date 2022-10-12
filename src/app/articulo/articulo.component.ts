@@ -27,6 +27,8 @@ export class ArticuloComponent implements OnInit {
   car_cod="";
 
   emp_cod="";
+  l_tabla="cliente"
+l_urlist=""
 
   articulo:articulo = new articulo();
   datatable:any=[];
@@ -88,6 +90,8 @@ this.dataSource.data=this.datatable
       ///ingresar articuloss
 
 OnAddusuario(Articulo:articulo):void{
+  this.l_urlist=this.GlobalService
+  .creainser(this.l_tabla)
 
   console.log(this.gvariables.g_empid.id.id)
 
@@ -95,7 +99,7 @@ OnAddusuario(Articulo:articulo):void{
   this.GlobalService
 
 
-  .metodoPost('https://localhost:44373/Articulo/Insertar?usuario='+this.gvariables.g_empid.id.id,
+  .metodoPost(''+this.l_urlist+''+this.gvariables.g_empid.id.id,
 
   {
   emp_cod:this.articulo.emp_cod,
@@ -104,7 +108,10 @@ OnAddusuario(Articulo:articulo):void{
   art_est:this.articulo.art_est,
   car_cod:this.articulo.car_cod,
   art_prec:this.articulo.art_prec
-})
+}
+
+
+)
 .subscribe((resultado)=>{
 
   alert('ARTICULO AÑADIDO')

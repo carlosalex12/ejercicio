@@ -11,6 +11,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -25,7 +28,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatCardModule,
+    MatSelectModule
   ],
   exports:[
     MatToolbarModule,
@@ -38,7 +43,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatCardModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }
